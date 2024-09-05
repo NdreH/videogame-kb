@@ -16,5 +16,5 @@ public interface VideoGameService {
 
   VideoGame updateGame(Long id, VideoGame videoGame);
 
-  void deleteGame(Long id);
+  VideoGame deleteGame(Long id);
 }

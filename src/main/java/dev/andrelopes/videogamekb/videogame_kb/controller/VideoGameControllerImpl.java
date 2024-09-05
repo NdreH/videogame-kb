@@ -25,6 +25,7 @@ public class VideoGameControllerImpl implements VideoGameController {
   }
 
   @Override
+  @GetMapping
   public ResponseEntity<List<VideoGame>> getAllGames() {
     return ResponseEntity.ok(videoGameServiceImpl.getAllGames());
   }
@@ -53,11 +54,11 @@ public class VideoGameControllerImpl implements VideoGameController {
 
   @Override
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
+  public ResponseEntity<VideoGame> deleteGame(@PathVariable Long id) {
     VideoGame game = videoGameServiceImpl.getGameById(id);
     if (game != null) {
-      videoGameServiceImpl.deleteGame(id);
-      return ResponseEntity.noContent().build();
+      VideoGame deletedGame = videoGameServiceImpl.deleteGame(id);
+      return ResponseEntity.ok(deletedGame);
     } else {
       return ResponseEntity.notFound().build();
     }

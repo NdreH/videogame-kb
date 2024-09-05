@@ -22,7 +22,6 @@ public class VideoGameServiceImpl implements VideoGameService {
     this.videoGameRepository = videoGameRepository;
   }
 
-
   public List<VideoGame> getAllGames() {
     return videoGameRepository.findAll();
   }
@@ -39,14 +38,22 @@ public class VideoGameServiceImpl implements VideoGameService {
   @Override
   public VideoGame updateGame(Long id, VideoGame videoGame) {
     if (videoGameRepository.existsById(id)) {
-      return videoGameRepository.save(videoGame);
+      VideoGame game = videoGameRepository.findById(id).get();
+      game.setProperties(videoGame);
+      return videoGameRepository.save(game);
     } else {
       return null;
     }
   }
 
-  public void deleteGame(Long id) {
-    videoGameRepository.deleteById(id);
+  public VideoGame deleteGame(Long id) {
+    if (videoGameRepository.existsById(id)) {
+      VideoGame deletedGame = videoGameRepository.findById(id).get();
+      videoGameRepository.deleteById(id);
+      return deletedGame;
+    } else {
+      return null;
+    }
   }
 
   // Additional business logic can go here

@@ -18,6 +18,6 @@ public interface VideoGameController {
 
   ResponseEntity<VideoGame> updateGame(Long id, VideoGame videoGame);
 
-  ResponseEntity<Void> deleteGame(Long id);
+  ResponseEntity<VideoGame> deleteGame(Long id);
 
 }
