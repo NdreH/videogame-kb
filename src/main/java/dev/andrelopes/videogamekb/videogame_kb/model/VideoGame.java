@@ -214,15 +214,15 @@ public class VideoGame {
     private final String genre;
 
     // Optional parameters with default values
-    private String platform = "Unknown";
-    private String developer = "Unknown";
-    private String publisher = "Unknown";
-    private String description = "No description";
+    private String platform = "N/A";
+    private String developer = "N/A";
+    private String publisher = "N/A";
+    private String description = "N/A";
     private int pegiRating = 0;
     private double netRevenue = 0.0;
     private double rating = 0.0;
     private long copiesSold = 0L;
-    private LocalDate releaseDate = LocalDate.now();
+    private LocalDate releaseDate = null;
 
     public Builder(String name, String category, String genre) {
       this.name = name;
